@@ -14,14 +14,24 @@
 		F702839127D0A11C003A6622 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F702838D27D0A11B003A6622 /* Widgets.intentdefinition */; };
 		F702839227D0A11C003A6622 /* Widgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = F702838D27D0A11B003A6622 /* Widgets.intentdefinition */; };
 		F702839527D0A11C003A6622 /* WidgetsExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F702838427D0A11B003A6622 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F7A8413427DB68F400DF18A6 /* Session+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BB675527D013E000109D8B /* Session+CoreDataClass.swift */; };
+		F7A8413527DB68F600DF18A6 /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BB675627D013E000109D8B /* Session+CoreDataProperties.swift */; };
+		F7A8413627DB691000DF18A6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BB671D27CFEA0F00109D8B /* Persistence.swift */; };
+		F7A8413B27DB6A6C00DF18A6 /* GlobalHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A8413A27DB6A6C00DF18A6 /* GlobalHelpers.swift */; };
+		F7A8413C27DB6A6C00DF18A6 /* GlobalHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A8413A27DB6A6C00DF18A6 /* GlobalHelpers.swift */; };
 		F7BB671527CFEA0E00109D8B /* FMangerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BB671427CFEA0E00109D8B /* FMangerApp.swift */; };
 		F7BB671727CFEA0E00109D8B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BB671627CFEA0E00109D8B /* ContentView.swift */; };
-		F7BB671927CFEA0F00109D8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7BB671827CFEA0F00109D8B /* Assets.xcassets */; };
 		F7BB671C27CFEA0F00109D8B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7BB671B27CFEA0F00109D8B /* Preview Assets.xcassets */; };
 		F7BB671E27CFEA0F00109D8B /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BB671D27CFEA0F00109D8B /* Persistence.swift */; };
 		F7BB672127CFEA0F00109D8B /* FManger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7BB671F27CFEA0F00109D8B /* FManger.xcdatamodeld */; };
 		F7BB675927D013E000109D8B /* Session+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BB675527D013E000109D8B /* Session+CoreDataClass.swift */; };
 		F7BB675A27D013E000109D8B /* Session+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BB675627D013E000109D8B /* Session+CoreDataProperties.swift */; };
+		F7C77AA127D6BC7D0074716A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7BB671827CFEA0F00109D8B /* Assets.xcassets */; };
+		F7C77AA227D6C08E0074716A /* FManger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F7BB671F27CFEA0F00109D8B /* FManger.xcdatamodeld */; };
+		F7C77AA727D763320074716A /* TahomaBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7C77AA527D763320074716A /* TahomaBold.ttf */; };
+		F7C77AA827D763320074716A /* TahomaBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7C77AA527D763320074716A /* TahomaBold.ttf */; };
+		F7C77AA927D763320074716A /* TahomaReg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7C77AA627D763320074716A /* TahomaReg.ttf */; };
+		F7C77AAA27D763320074716A /* TahomaReg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F7C77AA627D763320074716A /* TahomaReg.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,15 +67,21 @@
 		F702838E27D0A11C003A6622 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F702839027D0A11C003A6622 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F702839A27D12AFF003A6622 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F7A8412F27D7CA0500DF18A6 /* FManger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FManger.entitlements; sourceTree = "<group>"; };
+		F7A8413027D7CAB500DF18A6 /* WidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetsExtension.entitlements; sourceTree = "<group>"; };
+		F7A8413A27DB6A6C00DF18A6 /* GlobalHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHelpers.swift; sourceTree = "<group>"; };
 		F7BB671127CFEA0E00109D8B /* FManger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FManger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7BB671427CFEA0E00109D8B /* FMangerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMangerApp.swift; sourceTree = "<group>"; };
 		F7BB671627CFEA0E00109D8B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F7BB671827CFEA0F00109D8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7BB671B27CFEA0F00109D8B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F7BB671D27CFEA0F00109D8B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		F7BB671D27CFEA0F00109D8B /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Persistence.swift; path = Data/Persistence.swift; sourceTree = SOURCE_ROOT; };
 		F7BB672027CFEA0F00109D8B /* FManger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FManger.xcdatamodel; sourceTree = "<group>"; };
 		F7BB675527D013E000109D8B /* Session+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F7BB675627D013E000109D8B /* Session+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Session+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F7C77AA527D763320074716A /* TahomaBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TahomaBold.ttf; sourceTree = "<group>"; };
+		F7C77AA627D763320074716A /* TahomaReg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = TahomaReg.ttf; sourceTree = "<group>"; };
+		F7C77AAB27D7640B0074716A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,12 +124,33 @@
 			path = Widgets;
 			sourceTree = "<group>";
 		};
+		F7A8413727DB6A3600DF18A6 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F7BB675527D013E000109D8B /* Session+CoreDataClass.swift */,
+				F7BB675627D013E000109D8B /* Session+CoreDataProperties.swift */,
+				F7BB671D27CFEA0F00109D8B /* Persistence.swift */,
+				F7BB671F27CFEA0F00109D8B /* FManger.xcdatamodeld */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		F7A8413927DB6A4D00DF18A6 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F7A8413A27DB6A6C00DF18A6 /* GlobalHelpers.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		F7BB670827CFEA0E00109D8B = {
 			isa = PBXGroup;
 			children = (
+				F7A8413027D7CAB500DF18A6 /* WidgetsExtension.entitlements */,
 				F702839A27D12AFF003A6622 /* README.md */,
-				F7BB675527D013E000109D8B /* Session+CoreDataClass.swift */,
-				F7BB675627D013E000109D8B /* Session+CoreDataProperties.swift */,
+				F7A8413927DB6A4D00DF18A6 /* Helpers */,
+				F7A8413727DB6A3600DF18A6 /* Data */,
+				F7C77AA327D7631F0074716A /* Fonts */,
 				F7BB671327CFEA0E00109D8B /* FManger */,
 				F702838A27D0A11B003A6622 /* Widgets */,
 				F702838527D0A11B003A6622 /* Frameworks */,
@@ -133,11 +170,11 @@
 		F7BB671327CFEA0E00109D8B /* FManger */ = {
 			isa = PBXGroup;
 			children = (
+				F7A8412F27D7CA0500DF18A6 /* FManger.entitlements */,
+				F7C77AAB27D7640B0074716A /* Info.plist */,
 				F7BB671427CFEA0E00109D8B /* FMangerApp.swift */,
 				F7BB671627CFEA0E00109D8B /* ContentView.swift */,
 				F7BB671827CFEA0F00109D8B /* Assets.xcassets */,
-				F7BB671D27CFEA0F00109D8B /* Persistence.swift */,
-				F7BB671F27CFEA0F00109D8B /* FManger.xcdatamodeld */,
 				F7BB671A27CFEA0F00109D8B /* Preview Content */,
 			);
 			path = FManger;
@@ -149,6 +186,23 @@
 				F7BB671B27CFEA0F00109D8B /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F7C77AA327D7631F0074716A /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F7C77AA427D763280074716A /* Tahoma */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F7C77AA427D763280074716A /* Tahoma */ = {
+			isa = PBXGroup;
+			children = (
+				F7C77AA627D763320074716A /* TahomaReg.ttf */,
+				F7C77AA527D763320074716A /* TahomaBold.ttf */,
+			);
+			path = Tahoma;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,7 +286,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7C77AA827D763320074716A /* TahomaBold.ttf in Resources */,
 				F702838F27D0A11C003A6622 /* Assets.xcassets in Resources */,
+				F7C77AAA27D763320074716A /* TahomaReg.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,8 +296,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7C77AA727D763320074716A /* TahomaBold.ttf in Resources */,
+				F7C77AA127D6BC7D0074716A /* Assets.xcassets in Resources */,
+				F7C77AA927D763320074716A /* TahomaReg.ttf in Resources */,
 				F7BB671C27CFEA0F00109D8B /* Preview Assets.xcassets in Resources */,
-				F7BB671927CFEA0F00109D8B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +310,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7C77AA227D6C08E0074716A /* FManger.xcdatamodeld in Sources */,
+				F7A8413C27DB6A6C00DF18A6 /* GlobalHelpers.swift in Sources */,
 				F702839127D0A11C003A6622 /* Widgets.intentdefinition in Sources */,
+				F7A8413427DB68F400DF18A6 /* Session+CoreDataClass.swift in Sources */,
+				F7A8413627DB691000DF18A6 /* Persistence.swift in Sources */,
+				F7A8413527DB68F600DF18A6 /* Session+CoreDataProperties.swift in Sources */,
 				F702838C27D0A11B003A6622 /* Widgets.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,6 +326,7 @@
 			files = (
 				F7BB675A27D013E000109D8B /* Session+CoreDataProperties.swift in Sources */,
 				F7BB672127CFEA0F00109D8B /* FManger.xcdatamodeld in Sources */,
+				F7A8413B27DB6A6C00DF18A6 /* GlobalHelpers.swift in Sources */,
 				F7BB671E27CFEA0F00109D8B /* Persistence.swift in Sources */,
 				F7BB671727CFEA0E00109D8B /* ContentView.swift in Sources */,
 				F7BB675927D013E000109D8B /* Session+CoreDataClass.swift in Sources */,
@@ -287,6 +351,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y5QFG4PA86;
@@ -314,6 +379,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WidgetsExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y5QFG4PA86;
@@ -458,12 +524,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FManger/FManger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FManger/Preview Content\"";
 				DEVELOPMENT_TEAM = Y5QFG4PA86;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FManger/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -489,12 +557,14 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FManger/FManger.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FManger/Preview Content\"";
 				DEVELOPMENT_TEAM = Y5QFG4PA86;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FManger/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

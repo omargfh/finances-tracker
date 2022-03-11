@@ -27,92 +27,96 @@ struct ContentView: View {
     @State var isIn: Bool = false
     @State var sessionTotal: Double = 0
     @State var total: Double = 0
-    @State var sessionTime: Double = 0
+    @State var sessionTime: Double = 20
     @State var currentSession: UUID = UUID()
     @State var hourly: Double = 15.3
     
     
     var body: some View {
-        VStack {
+        ZStack {
+            Color(UIColor(named: "Black")!)
+                   .ignoresSafeArea(.all, edges: .all)
             VStack {
                 VStack {
-                    Text("Session Total")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                    Text("$\(String(format: "%.2f", sessionTotal))")
-                        .font(.system(size: 45, weight: .bold, design: .default))
-                        .foregroundColor(.white)
-                }
-                .padding(5)
-                
-                
-                HStack {
-                    Text("Grand Total:")
-                        .font(.body)
-                        .foregroundColor(.white)
+                    VStack {
+                        Text("Session Total")
+                            .font(.headline)
+                            .foregroundColor(Color("textColor"))
+                        Text("$\(String(format: "%.2f", sessionTotal))")
+                            .font(.system(size: 45, weight: .bold, design: .default))
+                            .foregroundColor(Color("textColor"))
+                    }
+                    .padding(5)
                     
-                    Text("$\(String(format: "%.2f", total))")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                }
+                    
+                    HStack {
+                        Text("Grand Total:")
+                            .font(.body)
+                            .foregroundColor(Color("textColor"))
+                        
+                        Text("$\(String(format: "%.2f", total))")
+                            .font(.headline)
+                            .foregroundColor(Color("textColor"))
+                    }
+                    
+                }.padding()
+                    .onAppear {
+                        updateUI()
+                    }
+                    .onReceive(timer) { time in
+                        updateUI()
+                    }
                 
-            }.padding()
-                .onAppear {
-                    updateUI()
+                Button(isIn ? "Check Out" : "Check In") {
+                    if (!isIn) {
+                        logSession()
+                    }
+                    else {
+                        endSession(session: sessions[0])
+                        updateUI()
+                    }
+                    isIn.toggle()
+                    
+                    
                 }
-                .onReceive(timer) { time in
-                    updateUI()
-                }
-            
-            Button(isIn ? "Check Out" : "Check In") {
-                if (!isIn) {
-                    logSession()
-                }
-                else {
-                    endSession(session: sessions[0])
-                    updateUI()
-                }
-                isIn.toggle()
-                
-                
-            }
-            .foregroundColor(.white)
-            .padding()
-            .background(isIn ? Color.red : Color.blue)
-            .cornerRadius(8)
-            .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
-            .onAppear(perform: {
-                if (sessions.count > 0) {
-                    if (sessions[0].end == nil) {
-                        isIn = true
-                        currentSession = sessions[0].id!
+                .foregroundColor(.white)
+                .padding()
+                .background(isIn ? Color.red : Color.blue)
+                .cornerRadius(8)
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 20, trailing: 0))
+                .onAppear(perform: {
+                    if (sessions.count > 0) {
+                        if (sessions[0].end == nil) {
+                            isIn = true
+                            currentSession = sessions[0].id!
+                        }
+                    }
+                })
+                if (isIn) {
+                    HStack {
+                        Text("Session Time:")
+                            .font(.body)
+                            .foregroundColor(Color("textColor"))
+                        
+                        Text("\(String(format: "%.0f", floor(sessionTime / 60.0))) hours and \(String(format: "%.0f", ((sessionTime / 60.0) - floor(sessionTime / 60.0)) * 60.0)) minutes")
+                            .font(.body)
+                            .foregroundColor(Color("textColor"))
+                    }
+                    HStack {
+                        Text("Checked in at: \(sessions[0].start!, formatter: itemFormatter)")
+                            .foregroundColor(Color("textColor"))
+                            .font(.body)
+                            .transition(AnyTransition.opacity.animation(.easeInOut(duration:1.0)))
                     }
                 }
-            })
-            
-            HStack {
-                Text("Session Time:")
-                    .font(.body)
-                    .foregroundColor(.white)
                 
-                Text("\(String(format: "%.0f", sessionTime / 60.0)) hours and \(String(format: "%.0f", (sessionTime / 60 - floor(sessionTime / 60)) * 60)) minutes")
-                    .font(.body)
-                    .foregroundColor(.white)
             }
-            HStack {
-                Text(isIn ? "Checked in at: \(sessions[0].start!, formatter: itemFormatter)" : "")
-                    .foregroundColor(.white)
-                    .font(.body)
-                    .transition(AnyTransition.opacity.animation(.easeInOut(duration:1.0)))
-            }
-            
+            .edgesIgnoringSafeArea(.all)
+            .frame(
+                maxWidth: .infinity,
+                maxHeight: .infinity
+            )
         }
-        .edgesIgnoringSafeArea(.all)
-        .frame(
-            maxWidth: .infinity,
-            maxHeight: .infinity
-        )
-        .background(Color.black)
     }
     
     private func logSession() {
@@ -139,31 +143,11 @@ struct ContentView: View {
         currentSession = UUID()
     }
     
-    private func timeBetween(fromDate: Date, toDate: Date) -> Double {
-        let seconds = Calendar.current.dateComponents([.second], from: fromDate, to: toDate).second ?? 0
-        
-        return Double(seconds) / 60.0
-    }
-    
-    private func totalMinutes(sessions: FetchedResults<Session>) -> Double {
-        var time: Double = 0.0
-        for session in sessions {
-            if (session.end != nil) {
-                time = time + timeBetween(fromDate: session.start!, toDate: session.end!)
-            }
-        }
-        return time
-    }
-    
-    private func getTotal(perHour: Double, minutes: Double) -> Double {
-        return perHour * (minutes / 60)
-    }
-    
     private func updateUI() {
         if (sessions.count > 0 && sessions[0].start != nil) {
             if (sessions[0].end == nil) {
                 let currentSessionDumb = getTotal(perHour: hourly, minutes: timeBetween(fromDate: sessions[0].start!, toDate: Date()))
-                sessionTime = currentSessionDumb
+                sessionTime = timeBetween(fromDate: sessions[0].start!, toDate: Date())
                 total = getTotal(perHour: hourly, minutes: totalMinutes(sessions: sessions)) + currentSessionDumb
                 sessionTotal = currentSessionDumb
             }
