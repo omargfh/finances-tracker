@@ -19,6 +19,8 @@
 		F7A8413627DB691000DF18A6 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BB671D27CFEA0F00109D8B /* Persistence.swift */; };
 		F7A8413B27DB6A6C00DF18A6 /* GlobalHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A8413A27DB6A6C00DF18A6 /* GlobalHelpers.swift */; };
 		F7A8413C27DB6A6C00DF18A6 /* GlobalHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A8413A27DB6A6C00DF18A6 /* GlobalHelpers.swift */; };
+		F7A8413F27DC0EDD00DF18A6 /* WidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A8413E27DC0EDD00DF18A6 /* WidgetData.swift */; };
+		F7A8414027DC0EDD00DF18A6 /* WidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A8413E27DC0EDD00DF18A6 /* WidgetData.swift */; };
 		F7BB671527CFEA0E00109D8B /* FMangerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BB671427CFEA0E00109D8B /* FMangerApp.swift */; };
 		F7BB671727CFEA0E00109D8B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BB671627CFEA0E00109D8B /* ContentView.swift */; };
 		F7BB671C27CFEA0F00109D8B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7BB671B27CFEA0F00109D8B /* Preview Assets.xcassets */; };
@@ -70,6 +72,7 @@
 		F7A8412F27D7CA0500DF18A6 /* FManger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FManger.entitlements; sourceTree = "<group>"; };
 		F7A8413027D7CAB500DF18A6 /* WidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetsExtension.entitlements; sourceTree = "<group>"; };
 		F7A8413A27DB6A6C00DF18A6 /* GlobalHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalHelpers.swift; sourceTree = "<group>"; };
+		F7A8413E27DC0EDD00DF18A6 /* WidgetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetData.swift; sourceTree = "<group>"; };
 		F7BB671127CFEA0E00109D8B /* FManger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FManger.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7BB671427CFEA0E00109D8B /* FMangerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMangerApp.swift; sourceTree = "<group>"; };
 		F7BB671627CFEA0E00109D8B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -116,6 +119,7 @@
 		F702838A27D0A11B003A6622 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				F7A8413027D7CAB500DF18A6 /* WidgetsExtension.entitlements */,
 				F702838B27D0A11B003A6622 /* Widgets.swift */,
 				F702838D27D0A11B003A6622 /* Widgets.intentdefinition */,
 				F702838E27D0A11C003A6622 /* Assets.xcassets */,
@@ -143,10 +147,18 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		F7A8413D27DC0ECE00DF18A6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F7A8413E27DC0EDD00DF18A6 /* WidgetData.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		F7BB670827CFEA0E00109D8B = {
 			isa = PBXGroup;
 			children = (
-				F7A8413027D7CAB500DF18A6 /* WidgetsExtension.entitlements */,
+				F7A8413D27DC0ECE00DF18A6 /* Model */,
 				F702839A27D12AFF003A6622 /* README.md */,
 				F7A8413927DB6A4D00DF18A6 /* Helpers */,
 				F7A8413727DB6A3600DF18A6 /* Data */,
@@ -311,6 +323,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7C77AA227D6C08E0074716A /* FManger.xcdatamodeld in Sources */,
+				F7A8414027DC0EDD00DF18A6 /* WidgetData.swift in Sources */,
 				F7A8413C27DB6A6C00DF18A6 /* GlobalHelpers.swift in Sources */,
 				F702839127D0A11C003A6622 /* Widgets.intentdefinition in Sources */,
 				F7A8413427DB68F400DF18A6 /* Session+CoreDataClass.swift in Sources */,
@@ -325,6 +338,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7BB675A27D013E000109D8B /* Session+CoreDataProperties.swift in Sources */,
+				F7A8413F27DC0EDD00DF18A6 /* WidgetData.swift in Sources */,
 				F7BB672127CFEA0F00109D8B /* FManger.xcdatamodeld in Sources */,
 				F7A8413B27DB6A6C00DF18A6 /* GlobalHelpers.swift in Sources */,
 				F7BB671E27CFEA0F00109D8B /* Persistence.swift in Sources */,

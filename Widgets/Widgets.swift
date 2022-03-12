@@ -6,18 +6,18 @@
 //
 
 import WidgetKit
+import CoreData
 import SwiftUI
 import Intents
 
 struct Provider: IntentTimelineProvider {
-
     
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), data: .previewData, error: false, configuration: ConfigurationIntent())
+        SimpleEntry(date: Date(), data: .preview, error: false, configuration: ConfigurationIntent())
     }
 
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), data: .previewData, error: false, configuration: configuration)
+        let entry = SimpleEntry(date: Date(), data: .preview, error: false, configuration: configuration)
         
         completion(entry)
     }
@@ -25,24 +25,28 @@ struct Provider: IntentTimelineProvider {
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
         
-        @FetchRequest(
-            sortDescriptors:[NSSortDescriptor(key: "start", ascending: false)],
-            animation: .default)
-        var sessions: FetchedResults<Session>
+        let encodedData  = UserDefaults(suiteName: "group.com.omaribrahim-uchicago.FManger")!.object(forKey: "widgetData") as? Data
+        if let encodedData = encodedData {
+            let decoded = try? JSONDecoder().decode(WidgetData.self, from: encodedData)
+               if let widgetData = decoded {
+                   let currentDate = Date()
+                   
+                   for offset in 0 ..< 60 {
+                       let entryDate = Calendar.current.date(byAdding: .second, value: offset * 30, to: currentDate)!
+                       let newWidgetData = WidgetData(checkedIn: widgetData.checkedIn, startDate: widgetData.startDate - TimeInterval((30 * offset)), historyMinutes: widgetData.historyMinutes, paycheckDay: widgetData.paycheckDay)
+                       
+                       let entry = SimpleEntry(date: entryDate,
+                                               data: newWidgetData,
+                                               error: false,
+                                               configuration: configuration)
+                       entries.append(entry)
+                   }
+               }
+        }
+        else {
+            entries.append(SimpleEntry(date: Date(), data: .error, error: true, configuration: configuration))
+        }
         
-        let checkedIn = sessions[0].end != nil
-        let totalMinutes = totalMinutes(sessions: sessions)
-        var auxMinutes = 0.0
-        if (checkedIn) {
-            auxMinutes = timeBetween(fromDate: sessions[0].start!, toDate: Date())
-        }
-        for i in 0 ..< 5 {
-            let cSession = (Double(i) + (auxMinutes / 60)) * 15.3
-            let data = SimpleEntry.PayData(currentSession: cSession, grossTotal: totalMinutes * 15.3 + cSession, paycheckDay: Date() + (7 * 24 * 60 * 60), checkedIn: checkedIn)
-            let entry = SimpleEntry(date: Date() + TimeInterval((i * 60 * 60)), data: data, error: false, configuration: configuration)
-            entries.append(entry)
-        }
-
         let timeline = Timeline(entries: entries, policy: .atEnd)
         completion(timeline)
     }
@@ -50,24 +54,10 @@ struct Provider: IntentTimelineProvider {
 
 struct SimpleEntry: TimelineEntry {
     var date: Date
-    var data: PayData
+    var data: WidgetData
     var error: Bool
     let configuration: ConfigurationIntent
-
-    struct PayData: Decodable {
-        let currentSession: Double
-        let grossTotal: Double
-        let paycheckDay: Date
-        var checkedIn: Bool
-        
-        var daysUntilPaycheck: Int {
-            Calendar.current.dateComponents([.day], from: Date(), to: paycheckDay).day!
-        }
-        
-        static let previewData = PayData(currentSession: 20.0, grossTotal: 240.12, paycheckDay: Date() + (12 * 24 * 60 * 60), checkedIn: true)
-        
-        static let error = PayData(currentSession: 0.0, grossTotal: 0.0, paycheckDay: Date(), checkedIn: false)
-    }
+    
 }
 
 struct WidgetsEntryView : View {
@@ -171,7 +161,7 @@ struct CurrentShiftView: View {
                 Text("Current Shift")
                     .font(.custom("Tahoma", size: 14 * scale))
                     .fontWeight(.bold)
-                Text("$\(String(format: "%0.2f", entry.data.currentSession))")
+                Text("$\(String(format: "%0.2f", entry.data.sessionTotal))")
                     .font(.custom("Tahoma", size: 30 * scale))
                     .bold()
                     .minimumScaleFactor(0.6)
@@ -221,11 +211,9 @@ struct NextPaycheckView: View {
 struct Widgets: Widget {
     let kind: String = "Widgets"
     let persistenceController = PersistenceController.shared
-
     var body: some WidgetConfiguration {
         IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
             WidgetsEntryView(entry: entry)
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
         .configurationDisplayName("Pay Tracker")
         .description("Check your current shift's earning, total earnings, and the date of your next payment in a glance.")
@@ -235,12 +223,23 @@ struct Widgets: Widget {
 struct Widgets_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            WidgetsEntryView(entry: SimpleEntry(date: Date(), data: .previewData, error: false, configuration: ConfigurationIntent()))
+            WidgetsEntryView(entry: SimpleEntry(date: Date(), data: .preview, error: false, configuration: ConfigurationIntent()))
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
-            WidgetsEntryView(entry: SimpleEntry(date: Date(), data: .previewData, error: false, configuration: ConfigurationIntent()))
+            WidgetsEntryView(entry: SimpleEntry(date: Date(), data: .preview, error: false, configuration: ConfigurationIntent()))
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
-            WidgetsEntryView(entry: SimpleEntry(date: Date(), data: .previewData, error: false, configuration: ConfigurationIntent()))
+            WidgetsEntryView(entry: SimpleEntry(date: Date(), data: .preview, error: false, configuration: ConfigurationIntent()))
                 .previewContext(WidgetPreviewContext(family: .systemLarge))
+        }
+        Group {
+            WidgetsEntryView(entry: SimpleEntry(date: Date(), data: .preview, error: false, configuration: ConfigurationIntent()))
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+                .environment(\.colorScheme, .dark)
+            WidgetsEntryView(entry: SimpleEntry(date: Date(), data: .preview, error: false, configuration: ConfigurationIntent()))
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+                .environment(\.colorScheme, .dark)
+            WidgetsEntryView(entry: SimpleEntry(date: Date(), data: .preview, error: false, configuration: ConfigurationIntent()))
+                .previewContext(WidgetPreviewContext(family: .systemLarge))
+                .environment(\.colorScheme, .dark)
         }
     }
 }

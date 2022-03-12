@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import WidgetKit
 import Foundation
 
 struct ContentView: View {
@@ -35,7 +36,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             Color(UIColor(named: "Black")!)
-                   .ignoresSafeArea(.all, edges: .all)
+                .ignoresSafeArea(.all, edges: .all)
             VStack {
                 VStack {
                     VStack {
@@ -65,6 +66,9 @@ struct ContentView: View {
                     }
                     .onReceive(timer) { time in
                         updateUI()
+                    }
+                    .onDisappear() {
+                        WidgetCenter.shared.reloadAllTimelines()
                     }
                 
                 Button(isIn ? "Check Out" : "Check In") {
@@ -121,12 +125,22 @@ struct ContentView: View {
     
     private func logSession() {
         withAnimation {
+            // CoreData
             let newSession = Session(context: viewContext)
+            let currentDate = Date()
             newSession.id = currentSession
-            newSession.start = Date()
+            newSession.start = currentDate
             newSession.end = nil
             do {
                 try viewContext.save()
+                
+                // WidgetData
+                let newEntry = WidgetData(checkedIn: true, startDate: currentDate, historyMinutes: totalMinutes(sessions: sessions), paycheckDay: Date())
+                let serialized = try! JSONEncoder().encode(newEntry)
+                UserDefaults(suiteName: "group.com.omaribrahim-uchicago.FManger")!
+                    .set(serialized, forKey: "widgetData")
+                WidgetCenter.shared.reloadAllTimelines()
+                
             } catch {
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
@@ -140,6 +154,12 @@ struct ContentView: View {
             session.end = updatedSession
             try? viewContext.save()
         }
+        // WidgetData
+        let newEntry = WidgetData(checkedIn: false, startDate: Date(), historyMinutes: totalMinutes(sessions: sessions), paycheckDay: Date())
+        let serialized = try! JSONEncoder().encode(newEntry)
+        UserDefaults(suiteName: "group.com.omaribrahim-uchicago.FManger")!
+            .set(serialized, forKey: "widgetData")
+        WidgetCenter.shared.reloadAllTimelines()
         currentSession = UUID()
     }
     
